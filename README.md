@@ -14,8 +14,6 @@
    `python ./sms-cli.py --url=https://company.jamfcloud.com --username=user --managed --id=156`
 
    - For help:
-   
-
    ```
    python ./sms-cli.py --help
    Usage: sms-cli.py [OPTIONS]
