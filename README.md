@@ -1,4 +1,4 @@
-# Set Managment Status CLI (smscli)
+# Set Managment Status CLI (sms-cli)
 ## Modify Jamf Pro Computer Object(s) Management Status
 
 > Jamf removed the ability to mass action modify the management account status for computers in 10.49. We can mass modify computer objects via the uapi instead.
