@@ -1,5 +1,7 @@
 # Set Management Status CLI (sms-cli)
 
+Simple CLI tool to set the management status of Jamf Pro computer object(s) via the universal api. Iterates a Jamf Advanced Computer Search and updates each individual object.
+
 > Jamf removed the ability to mass action modify the management account status for computers in 10.49. We can mass modify computer objects via the uapi instead.
 
 ## Setup
