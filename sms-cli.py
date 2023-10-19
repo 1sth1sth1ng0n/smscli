@@ -9,8 +9,8 @@
 Usage: sms-cli.py [OPTIONS]
 
   Simple CLI tool to set the management status of Jamf Pro computer object(s)
-  via the universal api.  Iterates a Jamf computer group and updates each
-  individual object.
+  via the universal api. Iterates a Jamf Advanced Computer Search and updates 
+  each individual object.
 
 Options:
   --url TEXT               Jamf Pro url - e.g https://company.jamfcloud.com
@@ -19,7 +19,7 @@ Options:
                            Update, Users: Update.  [required]
   --managed / --unmanaged  Required management status of computer object in
                            Jamf Pro.  [required]
-  --id INTEGER             Jamf Pro computer group ID.  [required]
+  --id INTEGER             Jamf Pro Advanced Computer Search ID.  [required]
   --password TEXT          Jamf Pro user password.
   --yes                    Confirm the action without prompting.
   --help                   Show this message and exit.
@@ -33,14 +33,15 @@ import click
 @click.option('--url', required=True, help='Jamf Pro url - e.g https://company.jamfcloud.com')
 @click.option('--username', required=True, help='Jamf Pro user with permissions - Computers: Read, Update, Users: Update.')
 @click.option('--managed/--unmanaged', required=True, help='Required management status of computer object in Jamf Pro.')
-@click.option('--id', required=True, type=int, help='Jamf Pro computer group ID.')
+@click.option('--id', required=True, type=int, help='Advanced Computer Search ID.')
 @click.password_option(help='Jamf Pro user password.')
 @click.confirmation_option(prompt='Are you sure you want to change the management status for the device(s)?')
 
 def set_management_status(url,username,managed,id,password):
 
-    """Simple CLI tool to set the management status of Jamf Pro computer object(s) via the universal api. 
-    Iterates a Jamf computer group and updates each individual object."""
+    """Simple CLI tool to set the management status of Jamf Pro computer object(s)
+    via the universal api. Iterates a Jamf Advanced Computer Search and updates 
+    each individual object."""
 
     ''' xml payload needs string value from cli boolean '''
     desired_status = str(managed).lower()
@@ -49,14 +50,14 @@ def set_management_status(url,username,managed,id,password):
     ''' use jps-api-wrapper to do the heavy lifting '''
     with Classic(url, username, password) as classic:
         computer_group = classic.get_advanced_computer_search(id=id, data_type='json')
-        print(f'[SMC_CLI] Using group: {computer_group['advanced_computer_search']['name']}')
+        print(f"[SMC_CLI] Using search ID: {computer_group['advanced_computer_search']['name']}")
         '''loop group members and extract managed value'''
         for item in computer_group['advanced_computer_search']['computers']:
             jssid = item['id']
-            print(f'[SMC_CLI] Setting management status for host:{item['Computer_Name']} jssid:{jssid}...')
+            print(f"[SMC_CLI] Setting management status for host:{item['Computer_Name']} jssid:{jssid}...")
             classic.update_computer(id=jssid, data=payload)
             management_status = classic.get_computer(id=jssid, subsets=['General'])
-            print(f'[SMC_CLI]...New management status = {management_status['computer']['general']['remote_management']['managed']}')
+            print(f"[SMC_CLI]...New management status = {management_status['computer']['general']['remote_management']['managed']}")
 
 if __name__ == '__main__':
     set_management_status()
