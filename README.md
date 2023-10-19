@@ -1,5 +1,5 @@
 # Set Management Status CLI (sms-cli)
-## Modify Jamf Pro Computer Object(s) Management Status
+## Setup
 
 > Jamf removed the ability to mass action modify the management account status for computers in 10.49. We can mass modify computer objects via the uapi instead.
 
@@ -38,7 +38,11 @@
      --help                   Show this message and exit.
    ```
 
-This project uses:
+> For best results use a virtual environment and install all dependencies https://realpython.com/intro-to-pyenv/
+
+---
+
+## Credits
 
 https://gitlab.com/cvtc/appleatcvtc/jps-api-wrapper#install
 
