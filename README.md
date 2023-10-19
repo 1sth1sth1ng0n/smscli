@@ -1,7 +1,8 @@
 # Set Management Status CLI (sms-cli)
-## Setup
 
 > Jamf removed the ability to mass action modify the management account status for computers in 10.49. We can mass modify computer objects via the uapi instead.
+
+## Setup
 
 1. Create an advanced computer search in Jamf Pro which filters just the devices you wish to mark as `unmanaged` / `managed`. 
 2. Make note of the search id from the url.
