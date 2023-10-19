@@ -6,6 +6,8 @@ Simple CLI tool to set the management status of Jamf Pro computer object(s) via 
 
 ## Setup
 
+> For best results use a virtual environment and install all dependencies https://realpython.com/intro-to-pyenv/
+
 1. Create an advanced computer search in Jamf Pro which filters just the devices you wish to mark as `unmanaged` / `managed`. 
 2. Make note of the search id from the url.
 3. Install project dependencies `pip install -r requirements.txt`. 
@@ -40,9 +42,6 @@ Simple CLI tool to set the management status of Jamf Pro computer object(s) via 
      --yes                    Confirm the action without prompting.
      --help                   Show this message and exit.
    ```
-
-> For best results use a virtual environment and install all dependencies https://realpython.com/intro-to-pyenv/
-
 ---
 
 ## Credits
