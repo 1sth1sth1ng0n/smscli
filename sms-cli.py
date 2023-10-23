@@ -28,6 +28,24 @@ Options:
 from jps_api_wrapper.classic import Classic
 from jps_api_wrapper.pro import Pro
 import click
+import logging
+
+# create logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logformat = logging.Formatter("%(asctime)s:%(levelname)s:%(message)s")
+
+# file log handler
+file = logging.FileHandler("output.log",mode='w')
+file.setFormatter(logformat)
+
+# console log handler
+console = logging.StreamHandler()
+console.setFormatter(logformat)
+
+# add handlers
+logger.addHandler(file)
+logger.addHandler(console)
 
 @click.command()
 @click.option('--url', required=True, help='Jamf Pro url - e.g https://company.jamfcloud.com')
@@ -50,14 +68,14 @@ def set_management_status(url,username,managed,id,password):
     ''' use jps-api-wrapper to do the heavy lifting '''
     with Classic(url, username, password) as classic:
         computer_group = classic.get_advanced_computer_search(id=id, data_type='json')
-        print(f"[SMC_CLI] Using search ID: {computer_group['advanced_computer_search']['name']}")
+        logger.info(f"Using group: {computer_group['advanced_computer_search']['name']}")
         '''loop group members and extract managed value'''
         for item in computer_group['advanced_computer_search']['computers']:
             jssid = item['id']
-            print(f"[SMC_CLI] Setting management status for host:{item['Computer_Name']} jssid:{jssid}...")
+            logger.info(f"Setting management status for host:{item['Computer_Name']} jssid:{jssid}...")
             classic.update_computer(id=jssid, data=payload)
             management_status = classic.get_computer(id=jssid, subsets=['General'])
-            print(f"[SMC_CLI]...New management status = {management_status['computer']['general']['remote_management']['managed']}")
+            logger.info(f"...New management status = {management_status['computer']['general']['remote_management']['managed']}")
 
 if __name__ == '__main__':
     set_management_status()
