@@ -45,6 +45,20 @@ Simple CLI tool to set the management status of Jamf Pro computer object(s) via 
    ```
 ---
 
+## Output Example
+
+```
+$ python ./sms-cli.py --url=https://company.jamfcloud.com --username=user --managed --id=156 --password='pass'
+Are you sure you want to change the management status for the device(s)? [y/N]: y
+[SMS-CLI] Using search ID: Computers - Test Group
+[SMS-CLI] Setting management status for host:host1 jssid:2988...
+[SMS-CLI]...New management status = True
+[SMS-CLI] Setting management status for host:host2 jssid:4277...
+[SMS-CLI]...New management status = True
+[SMS-CLI] Setting management status for host:host3 jssid:4117...
+[SMS-CLI]...New management status = True
+```
+
 ## Credits
 
 https://gitlab.com/cvtc/appleatcvtc/jps-api-wrapper#install
