@@ -43,8 +43,6 @@ Simple CLI tool to set the management status of Jamf Pro computer object(s) via 
      --yes                    Confirm the action without prompting.
      --help                   Show this message and exit.
    ```
----
-
 ## Output Example
 
 ```
