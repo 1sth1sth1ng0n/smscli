@@ -10,8 +10,9 @@ Simple CLI tool to set the management status of Jamf Pro computer object(s) via 
 
 1. Create an advanced computer search in Jamf Pro which filters just the devices you wish to mark as `unmanaged` / `managed`. 
 2. Make note of the search id from the url.
-3. Install project dependencies `pip install -r requirements.txt`. 
-4. - To set computers as `unmanaged`:
+3. `git clone` this repo.
+4. Install project dependencies `pip install -r requirements.txt`. 
+5. - To set computers as `unmanaged`:
     
     `python ./sms-cli.py --url=https://company.jamfcloud.com --username=user --unmanaged --id=156`
    
