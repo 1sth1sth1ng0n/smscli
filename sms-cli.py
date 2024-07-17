@@ -6,7 +6,24 @@
 #
 
 '''python ./sms-cli.py --help
+  Usage: sms-cli.py [OPTIONS]
 
+  Simple CLI tool to modify the management status of Jamf Pro computer
+  object(s)  via the classic api. Iterates a Jamf Pro 'Advanced Computer
+  Search' and updates  each individual object. Now supports client based auth.
+
+  Options:
+    --url TEXT               Jamf Pro url - e.g https://company.jamfcloud.com
+                             [required]
+    --client_id TEXT         Jamf Pro api Client ID with permissions -
+                             Computers: Read, Update. Users: Update. Advanced
+                             Computer Searches: Read.  [required]
+    --client_secret TEXT     Jamf Pro Client Secret associated with the supplied
+                             Client ID.  [required]
+    --managed / --unmanaged  Required management status of computer object in
+                             Jamf Pro.  [required]
+    --id INTEGER             Advanced Computer Search ID.  [required]
+    --help                   Show this message and exit.
 '''
 
 from jps_api_wrapper.classic import Classic
