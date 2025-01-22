@@ -8,7 +8,7 @@ Simple CLI tool to modify the management status of Jamf Pro computer object(s) v
 
 ## Setup
 
-> For best results use a pyhthon virtual environment and install all dependencies https://realpython.com/intro-to-pyenv/
+> For best results use a python virtual environment and install all dependencies https://realpython.com/intro-to-pyenv/
 
 1. Create an advanced computer search in Jamf Pro which filters just the devices you wish to modify as `unmanaged` / `managed`. 
 2. Make note of the search id from the url.
